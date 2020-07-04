@@ -24,15 +24,15 @@ class QuestionListView(ListView):
     context_object_name = "questions"
 
 
-def view_by_cat_button(request, id,*args,**kwargs):
+def view_by_cat_button(request, id, *args, **kwargs):
+    grp_name = Group.objects.get(id=id)
     groups = Group.objects.all()
     questions = Question.objects.filter(group__id=id)
     context = {
+        'grp_name': grp_name,
         'groups': groups,
         'questions': questions
         }
-    for q in questions:
-        print(q.question)
     return render(request, 'QuestionViewerApp/dashboard.html', context)
 
 

@@ -8,40 +8,103 @@
     <script src="https://kit.fontawesome.com/35c398e458.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
     <style type="text/css">
+
     body{
-    margin:0;
-     background-color: #e3f2fd;
-    }
+            margin:0;
+            background-color: #e3f2fd;
+        }
         .banner h1{
-         font-size:25px;
-         font-family: 'Work Sans', sans-serif;
-         color:white;
-         text-align: center;
+             font-size:25px;
+             font-family: 'Work Sans', sans-serif;
+             color:white;
+             text-align: center;
         }
         .ask-qst{
-        position : relative;
-        left: 12%;
-        background:#5fb7ea;
-        padding: .5rem 1rem;
-        width:14%;
-        outline: 2px solid #5fb7ea;
-        outline-offset:4px;
-        border: none;
-        text-transform: uppercase;
+            position : relative;
+            left: 12%;
+            background:#5fb7ea;
+            padding: .5rem 1rem;
+            width:14%;
+            outline: 2px solid #5fb7ea;
+            outline-offset:4px;
+            border: none;
+            text-transform: uppercase;
+            margin:100px 200px 0px 380px;
+<!--            margin-top:100px;-->
 
         }
         .ask-qst a{
-        color:white;
-        display:inline-block;
+            color:white;
+            display:inline-block;
         }
         ul{
             margin-top:100px;
         }
         li{
             list-style-type:none;
-<!--            border:1px solid;-->
             width:200px;
         }
+        #mainbody{
+             margin:0px auto;
+             width:100%;
+             position:absolute;
+             background-color:#DCE1E6 ;
+        }
+
+        #btn1{
+            width:80%;
+            margin:0px auto;
+            display: block;
+        }
+
+        button{
+          border:1px solid #0084ff;
+          border-radius:15px;
+          color:#0084ff;
+          background-color:#f2f6ff;
+          padding-left:10px;
+          padding-right:10px;
+          padding-top:4px;
+          padding-bottom:4px;
+          margin-right:5px;
+          margin-bottom:10px
+        }
+        #btn{
+          border:2px solid black;
+          color:black;
+          background-color:white;
+          cursor:pointer;
+          border-color:  #2196F3;
+          color: dodgerblue;
+
+        }
+
+        #btn:hover {
+          background-color: #2196F3;
+          color: white;
+        }
+        a{
+            color:#33334d;
+            font-family: "Times New Roman", Times, serif;
+        }
+        .questions-list{
+            width:100%;
+            height:100%;
+            background-color:;
+            text-align:center;
+        }
+        ul{
+            width:70%;
+            height:90%;
+            margin-left:0px auto;
+            margin-bottom:450px;
+            display:inline-block;
+            padding:20px;
+            border:1px solid #F2F3F4;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
     </style>
 </head>
 <body>
@@ -51,35 +114,42 @@
     </div>
   <!-- Navbar content -->
 </nav>
-    <a href="{{ groups.get_absolute_url }}">
+    <div id="mainbody">
+        <div id="btn1">
+            {% for group in groups %}
+            <a href="{% url 'detail' group.id %}"><button id="btn">{{ group.name }}</button></a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
         <div class="ask-qst">
-            <a href="{% url 'query' %}">Ask Your Questions</a>
+             <a href="{{ groups.get_absolute_url }}">
+                <a href="{% url 'query' %}">Ask Your Questions</a>
+             </a>
         </div>
 
-    </a>
+<div style="text-align:center;margin-top:50px;margin-bottom:-70px;font-size:30px;font-family: 'Work Sans', sans-serif;color:#7D312F;">{{ grp_name }}</div>
+<div class="questions-list">
     <ul>
-        {% for group in groups %}
-            <li><a href="{% url 'detail' group.id %}">{{ group.name }}</a></li>
+        {% for question in questions %}
+        <div style="margin-top:20px;margin-bottom:20px;margin-left:100px;">
+<!--        <li><embed src="{{ question.question.url }}" type="application/pdf"></li>-->
+            <li><embed src="{{ question.question.url }}" width="550px" height="300px"/></li>
+
+            <li><div style="width:550px;min-height:50px;overflow:hidden;padding:10px;font-family: 'Rubik', sans-serif; text-align-last: justify;">{{ question.comment }}</div></li>
+            <div style="width:150px;margin-left:330px;margin-right:10px;color:red;">{{ question.created_at }}</div>
+<!--            <li>{{ question.group }}</li>-->
+        </div>
         {% endfor %}
     </ul>
+</div>
 
-<!--    <ul>-->
-<!--        {% for question in questions %}-->
-<!--&lt;!&ndash;        <p><a href="{{ question.question.url }}" blank="false">View</a></p>&ndash;&gt;-->
-<!--        <embed src="{{ question.question.url }}" type="application/pdf">-->
-<!--&lt;!&ndash;    <img src="{{ question.question.url }}" style="border:1px solid;width:250px;height:250px;">&ndash;&gt;-->
-<!--&lt;!&ndash;    <embed src="{{ question.question.url }}" width="800px" height="2100px" />&ndash;&gt;-->
 
-<!--            <li>{{ question.comment }}</li>-->
-<!--            <li>{{ question.created_at }}</li>-->
-<!--            <li>{{ question.group }}</li>-->
-<!--        {% endfor %}-->
-<!--    </ul>-->
 
-<!--    <form method="post" enctype="multipart/form-data" style="margin-top:500px;margin-left:500px;border:1px solid;">-->
-<!--        {% csrf_token %}-->
-<!--        {{ form.as_p }}-->
-<!--        <input type="submit" value="submit">-->
-<!--    </form>-->
 </body>
 </html>
