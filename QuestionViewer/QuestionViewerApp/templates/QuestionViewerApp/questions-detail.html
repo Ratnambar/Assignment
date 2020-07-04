@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+        {% for group in groups %}
+            <li><a href="{{ group.id }}">{{ group.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for question in questions %}
+            <li>{{ question.comment }}</li>
+            <li>{{ question.created_at }}</li>
+            <li>{{ question.group }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

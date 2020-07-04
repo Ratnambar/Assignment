@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:500,600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/35c398e458.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Welcome to dashboard</h1>
+    <a href="{{ groups.get_absolute_url }}">
+     <a href="{% url 'query' %}">Ask Your Questions</a>
+    </a>
+    <ul>
+        {% for group in groups %}
+            <li><a href="{% url 'detail' group.id %}">{{ group.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for question in questions %}
+<!--        <p><a href="{{ question.question.url }}" blank="false">View</a></p>-->
+        <embed src="{{ question.question.url }}" type="application/pdf">
+<!--    <img src="{{ question.question.url }}" style="border:1px solid;width:250px;height:250px;">-->
+<!--    <embed src="{{ question.question.url }}" width="800px" height="2100px" />-->
+
+            <li>{{ question.comment }}</li>
+            <li>{{ question.created_at }}</li>
+            <li>{{ question.group }}</li>
+        {% endfor %}
+    </ul>
+
+<!--    <form method="post" enctype="multipart/form-data" style="margin-top:500px;margin-left:500px;border:1px solid;">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+<!--        <input type="submit" value="submit">-->
+<!--    </form>-->
+</body>
+</html>
