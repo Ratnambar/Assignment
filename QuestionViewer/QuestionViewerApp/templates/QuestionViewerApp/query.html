@@ -5,33 +5,32 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="Add-new-post" style="height:100%;border:1px solid;
-overflow: hidden;margin:0px auto; border:1px solid #F2F3F4;">
+    <div id="Add-new-post">
         <div style="width:80%;height:100%;margin:0px auto;">
-<!--        <p style="margin-left:360px; font-size:25px;color:white;">Add Post</p>-->
-        <form id="new-post-form" method="post"  enctype="multipart/form-data" style="margin-left:30px;margin-right:30px;height:100%;margin-bottom:50px;">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="submit" style="margin-left:50px;">
-        </form>
-            </div>
+            <form id="new-post-form" method="post"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="submit">
+            </form>
+        </div>
     </div>
-
 </body>
 <style>
-
-#Add-new-post{
-            margin-left:250px;
-<!--            border:1px solid;-->
-            width:100%;
-            height:600px;
-            background-color:	 #33334d;
+          body{
+            background-color:#DCE1E6;
           }
-
-
- #new-post-form{
+          #Add-new-post{
+            width:70%;
+            height:100%;
+            background-color:#33334d;
+            overflow: hidden;
+            margin:0px auto;
+             border:1px solid #F2F3F4;
+          }
+          #new-post-form{
             margin:30px 50px 30px 50px;
             height:100%;
+            width:100%;
           }
           #new-post-form input[type=file]{
             width:280px;
@@ -47,7 +46,7 @@ overflow: hidden;margin:0px auto; border:1px solid #F2F3F4;">
             border-radius:5px;
             border:none;
             margin-top:30px;
-            margin-left:300px;
+            margin-left:170px;
             background-color:white;
             cursor:pointer;
             border-color:  #2196F3;
@@ -65,31 +64,26 @@ overflow: hidden;margin:0px auto; border:1px solid #F2F3F4;">
               border:none;
               margin-top:30px;
               margin:30px 0px 0px 30px;
-<!--              background-color:#E5E7E9;-->
            }
 
            #id_comment{
               width:280px;
               height:70px;
-
               border-radius:5px;
               border:none;
-               margin:30px 0px 0px 14px;
-<!--              background-color:#E5E7E9;-->
+               margin:30px 0px 0px 30px;
            }
            #id_group{
               border-radius:5px;
               border:none;
-              margin:30px 0px 0px 30px;
+              margin:30px 0px 0px 55px;
               height:30px;
               width:280px;
            }
-
-
-    p label{
-        color:white;
-        font-family: 'Work Sans', sans-serif;
-    }
+           p label{
+             color:white;
+             font-family: 'Work Sans', sans-serif;
+           }
 
 
 </style>

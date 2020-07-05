@@ -30,8 +30,6 @@
             border: none;
             text-transform: uppercase;
             margin:100px 200px 0px 380px;
-<!--            margin-top:100px;-->
-
         }
         .ask-qst a{
             color:white;
@@ -105,51 +103,53 @@
 
         }
 
+        #comment{
+            width:550px;
+            min-height:50px;
+            overflow:hidden;
+            padding:10px;
+            font-family: 'Rubik', sans-serif;
+            text-align:left;
+        }
+        #created_at{
+            width:150px;
+            margin-left:330px;
+            margin-right:10px;
+            color:red;
+        }
+
     </style>
 </head>
 <body>
-<nav class="navbar navbar-light" style="background-color: #212121;">
-    <div class="banner">
-         <h1>Welcome to Question Viewer</h1>
-    </div>
-  <!-- Navbar content -->
-</nav>
+    <nav class="navbar navbar-light" style="background-color: #212121;">
+        <div class="banner">
+             <h1>Welcome to Question Viewer</h1>
+        </div>
+      <!-- Navbar content -->
+    </nav>
     <div id="mainbody">
         <div id="btn1">
             {% for group in groups %}
-            <a href="{% url 'detail' group.id %}"><button id="btn">{{ group.name }}</button></a>
+                <a href="{% url 'detail' group.id %}"><button id="btn">{{ group.name }}</button></a>
             {% endfor %}
         </div>
     </div>
-
-
-
-
-
-
-        <div class="ask-qst">
-             <a href="{{ groups.get_absolute_url }}">
+    <div class="ask-qst">
+        <a href="{{ groups.get_absolute_url }}">
                 <a href="{% url 'query' %}">Ask Your Questions</a>
-             </a>
-        </div>
-
-<div style="text-align:center;margin-top:50px;margin-bottom:-70px;font-size:30px;font-family: 'Work Sans', sans-serif;color:#7D312F;">{{ grp_name }}</div>
-<div class="questions-list">
-    <ul>
-        {% for question in questions %}
-        <div style="margin-top:20px;margin-bottom:20px;margin-left:100px;">
-<!--        <li><embed src="{{ question.question.url }}" type="application/pdf"></li>-->
-            <li><embed src="{{ question.question.url }}" width="550px" height="300px"/></li>
-
-            <li><div style="width:550px;min-height:50px;overflow:hidden;padding:10px;font-family: 'Rubik', sans-serif; text-align-last: justify;">{{ question.comment }}</div></li>
-            <div style="width:150px;margin-left:330px;margin-right:10px;color:red;">{{ question.created_at }}</div>
-<!--            <li>{{ question.group }}</li>-->
-        </div>
-        {% endfor %}
-    </ul>
-</div>
-
-
-
+        </a>
+    </div>
+    <div style="text-align:center;margin-top:50px;margin-bottom:-70px;font-size:30px;font-family: 'Work Sans', sans-serif;color:#7D312F;">{{ grp_name }}</div>
+    <div class="questions-list">
+        <ul>
+            {% for question in questions %}
+                <div style="margin-top:20px;margin-bottom:20px;margin-left:100px;">
+                    <li><iframe src="{{ question.question.url }}"  width="550px"; height="300px";frameBorder="0"; scrolling="no" ; marginwidth="0"; marginheight="0";/></iframe></li>
+                    <li><div id="comment">{{ question.comment }}</div></li>
+                    <div  id="created_at">{{ question.created_at }}</div>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
